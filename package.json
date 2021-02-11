@@ -1,5 +1,5 @@
 {
-  "name": "nexrender-action-handbrake",
+  "name": "buzzle-action-handbrake",
   "version": "1.0.0",
   "description": "Encode a video with Handbrake on postrender ",
   "main": "index.js",
