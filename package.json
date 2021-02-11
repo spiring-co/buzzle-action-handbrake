@@ -1,0 +1,16 @@
+{
+  "name": "nexrender-action-handbrake",
+  "version": "1.0.0",
+  "description": "Encode a video with Handbrake on postrender ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "harrylafranc",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "handbrake-js": "^3.0.8",
+    "path": "^0.12.7"
+  }
+}
