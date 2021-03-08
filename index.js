@@ -10,7 +10,7 @@ module.exports = (job, settings, options, type) => {
     );
   }
 
-  settings.logger.log(`[${job.uid}] starting action-handbrake action`);
+  settings.logger.log(`[${job.uid}] starting buzzle-action-handbrake action`);
 
   return new Promise((resolve, reject) => {
     let input = options.input || job.output;
@@ -21,19 +21,24 @@ module.exports = (job, settings, options, type) => {
 
     if (options.debug) {
       settings.logger.log(
-        `[${job.uid}] [action-handbrake] output is set to ${output}`
+        `[${job.uid}] [buzzle-action-handbrake] output is set to ${output}`
       );
     }
 
     hbjs
-      .spawn({ input: input, output: output })
+      .spawn({
+        input: input,
+        aencoder: "mp3",
+        optimize: true,
+        output: output,
+      })
       .on("error", (err) => {
         // invalid user input, no video found etc
         if (options.debug) {
           console.log("Error with action-handbrake");
           console.log(err);
         }
-        return reject(new Error("Error in action-handbrake module"));
+        return reject(err);
       })
       .on("progress", (progress) => {
         if (options.debug) {
