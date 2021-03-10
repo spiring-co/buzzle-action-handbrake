@@ -4,6 +4,7 @@ const path = require("path");
 const fs = require("fs");
 
 module.exports = (job, settings, options, type) => {
+  options.onStart()
   if (type != "postrender") {
     throw new Error(
       `Action ${name} can be only run in postrender mode, you provided: ${type}.`
@@ -38,6 +39,8 @@ module.exports = (job, settings, options, type) => {
           console.log("Error with action-handbrake");
           console.log(err);
         }
+        options.onComplete()
+
         return reject(err);
       })
       .on("progress", (progress) => {
@@ -59,6 +62,7 @@ module.exports = (job, settings, options, type) => {
           `[${job.uid}] [action-handbrake] encoding complete`
         );
         job.output = output;
+        options.onComplete()
         resolve(job);
       });
   });
