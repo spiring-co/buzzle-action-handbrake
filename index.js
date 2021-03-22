@@ -29,7 +29,6 @@ module.exports = (job, settings, options, type) => {
     hbjs
       .spawn({
         input: input,
-        aencoder: "mp3",
         optimize: true,
         output: output,
       })
