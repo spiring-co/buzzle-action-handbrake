@@ -30,6 +30,7 @@ module.exports = (job, settings, options, type) => {
       .spawn({
         input: input,
         optimize: true,
+        crop: "0:0:0:0",
         output: output,
       })
       .on("error", (err) => {
